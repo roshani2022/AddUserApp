@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+//import React, { useState } from "react";    // this is uded when we usec react.fragment
+import React, { useState ,Fragment} from "react";
 import "./App.css";
 import AddUser from "./Component/Users/AddUser";
 import UsersList from "./Component/Users/UsersList";
@@ -13,10 +14,24 @@ const App = () => {
     });
   };
   return (
-    <div className="App">
-      <AddUser onAddUser={addUserHandler}></AddUser>
-      <UsersList users={usersList}></UsersList>
-    </div>
+    // <>
+    //   <AddUser onAddUser={addUserHandler}></AddUser>
+    //   <UsersList users={usersList}></UsersList>
+    // </>
+
+    // Alternative of above
+
+    // <React.Fragment>
+    //    <AddUser onAddUser={addUserHandler}></AddUser>
+    //    <UsersList users={usersList}></UsersList>
+    //  </React.Fragment>
+
+<Fragment>
+<AddUser onAddUser={addUserHandler}></AddUser>
+<UsersList users={usersList}></UsersList>
+</Fragment>
+    
+    
   );
 };
 
