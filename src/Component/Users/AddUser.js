@@ -8,7 +8,7 @@ import ErrorModal from "../UI/ErrorModal";
 const AddUser = (props) => {
   const [userName, setUserName] = useState("");
   const [userAge, setUserAge] = useState("");
-  const [error,setError] = useState()
+  const [error, setError] = useState();
 
   const nameHandler = (event) => {
     setUserName(event.target.value);
@@ -16,35 +16,41 @@ const AddUser = (props) => {
   const ageHandler = (event) => {
     setUserAge(event.target.value);
   };
-  const errorHandler =() => {
-     setError(null)
-  }
+  const errorHandler = () => {
+    setError(null);
+  };
   const submitHandler = (event) => {
     event.preventDefault();
-    if (userName.trim().length === 0 || userAge.trim().length === 0){
+    if (userName.trim().length === 0 || userAge.trim().length === 0) {
       setError({
-        title:'Invalid input',
-        msg:'Please enter valid name and age (non-empty values)'
-      })
+        title: "Invalid input",
+        msg: "Please enter valid name and age (non-empty values)",
+      });
       return;
-    } 
-    if (+userAge < 1){
+    }
+    if (+userAge < 1) {
       setError({
-        title:'Invalid age',
-        msg:'Please enter valid a age (>0)'
-      })
+        title: "Invalid age",
+        msg: "Please enter valid a age (>0)",
+      });
       return;
-    } 
+    }
 
     props.onAddUser(userName, userAge);
     setUserName("");
     setUserAge("");
   };
 
-  return (
-    <div>
-    {error && <ErrorModal title ={error.title} msg ={error.msg} onConfirm={errorHandler}></ErrorModal>}
-    <Card className={classes.input}>
+  return [
+    error && (
+      <ErrorModal
+        key ="error-modal"
+        title={error.title}
+        msg={error.msg}
+        onConfirm={errorHandler}
+      ></ErrorModal>
+    ),
+    <Card  key ="Card-key" className={classes.input}>
       <form onSubmit={submitHandler}>
         <label htmlFor="username">Username</label>
         <input
@@ -62,8 +68,7 @@ const AddUser = (props) => {
         ></input>
         <Button type="submit"> Add User</Button>
       </form>
-    </Card>
-    </div>
-  );
+    </Card>,
+  ];
 };
 export default AddUser;
