@@ -13,6 +13,7 @@ const AddUser = (props) => {
 
   const nameHandler = (event) => {
     setUserName(event.target.value);
+    //console.log(setUserName)
   };
   const ageHandler = (event) => {
     setUserAge(event.target.value);
